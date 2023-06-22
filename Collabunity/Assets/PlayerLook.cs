@@ -17,7 +17,7 @@ public class PlayerLook : MonoBehaviour
 
     /* Default walking speed of the human */
 
-    [SerializeField] float walkSpeed = 10f;
+    [SerializeField] float walkSpeed = 5f;
 
 
     /* Rigidbody of the human */
@@ -46,6 +46,9 @@ public class PlayerLook : MonoBehaviour
     float xRotation = 0f;
 
 
+    /* Jump Velocity [playerOnly] */
+
+    [SerializeField] float jVel = 5f;
 
     void Start()
     {
@@ -79,8 +82,11 @@ public class PlayerLook : MonoBehaviour
             xRotation = Mathf.Clamp(xRotation, -90f, minViewDistance);
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
             playerBody.Rotate(Vector3.up * mouseX);
-            Human.position += new Vector3(transform.forward.x, 0f, transform.forward.z) * moveInput.y * walkSpeed * Time.deltaTime;
-            Human.position += new Vector3(transform.right.x, 0f, transform.right.z) * moveInput.x * walkSpeed * Time.deltaTime;
+            Human.position += Vector3.Normalize(new Vector3(transform.forward.x, 0f, transform.forward.z)) * moveInput.y * walkSpeed * Time.deltaTime;
+            Human.position += Vector3.Normalize(new Vector3(transform.right.x, 0f, transform.right.z)) * moveInput.x * walkSpeed * Time.deltaTime;
+
+            if (Input.GetKey(KeyCode.Space) && Human.velocity.y == 0) Human.velocity += new Vector3(0, jVel, 0);
+
         }
     }
 }

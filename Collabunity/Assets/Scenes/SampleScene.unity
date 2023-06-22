@@ -3412,13 +3412,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49079e988201b9f49a159bf48f6bde91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minViewDistance: 25
+  minViewDistance: 80
   playerBody: {fileID: 1174488859}
-  walkSpeed: 10
+  walkSpeed: 5
   Human: {fileID: 1174488855}
   freeCam: 0
   difference: 1
   mouseSensitivity: 100
+  jVel: 5
 --- !u!1001 &965716512
 PrefabInstance:
   m_ObjectHideFlags: 0
