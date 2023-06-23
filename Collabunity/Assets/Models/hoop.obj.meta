@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 50f72b4455437b149837106b5667f325
+guid: bb87b1b3b7ba5ff4a8895a9fc8eeb3f8
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,58 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: f3c5b89c5e07ef9428e78f2762d78cd9, type: 2}
+      name: Plane_Plane_Material.001Mat
+    second: {fileID: 2100000, guid: 860184a338a5b004a95e96a607ff5fe0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material.002
-    second: {fileID: 2100000, guid: 7c652b56cb968444d9a141db255419bc, type: 2}
+      name: Plane_Plane_Material.002Mat
+    second: {fileID: 2100000, guid: 7c0f68a39dbb07e46a0f5c13a77b2389, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material.003
-    second: {fileID: 2100000, guid: 76e93112c59af5e499e2746123e57f43, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.004
-    second: {fileID: 2100000, guid: 7248f2b058164af4593d5c038515a7bf, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.010
-    second: {fileID: 2100000, guid: b0edbac336277404bb29a4d8999fa1f9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_000_00_Body_00_SKIN (Instance).001
-    second: {fileID: 2100000, guid: 836f376b03e6bbd47ace9b59c2c3c3e6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_000_00_EyeHighlight_00_EYE (Instance).001
-    second: {fileID: 2100000, guid: ab759ce99fdabb94cbb26749adec6f44, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_000_00_EyeIris_00_EYE (Instance)
-    second: {fileID: 2100000, guid: f898f5010702ffd449ebf77a555d31ff, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_000_00_FaceBrow_00_FACE (Instance).001
-    second: {fileID: 2100000, guid: e401a4b4b708dca4eb46c65dacfb8bf7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_000_00_FaceEyeline_00_FACE (Instance).001
-    second: {fileID: 2100000, guid: e401a4b4b708dca4eb46c65dacfb8bf7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_000_00_HairBack_00_HAIR (Instance).001
-    second: {fileID: 2100000, guid: a6b050291e3d710459222c9fc9797d66, type: 2}
+      name: Torus_Torus_Material.002Mat
+    second: {fileID: 2100000, guid: 7c0f68a39dbb07e46a0f5c13a77b2389, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -90,7 +50,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 2
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -143,7 +103,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 2
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
