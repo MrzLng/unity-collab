@@ -58,7 +58,7 @@ public class PlayerLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!freeCam) transform.position = Human.position + new Vector3(0f, difference, 0f);
+        if (!freeCam && (transform.position.x != Human.position.x || transform.position.z != Human.position.z)) transform.position = Human.position + new Vector3(0f, difference, 0f);
 
         moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
@@ -82,11 +82,11 @@ public class PlayerLook : MonoBehaviour
             xRotation = Mathf.Clamp(xRotation, -90f, minViewDistance);
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
             playerBody.Rotate(Vector3.up * mouseX);
-            Human.position += Vector3.Normalize(new Vector3(transform.forward.x, 0f, transform.forward.z)) * moveInput.y * walkSpeed * Time.deltaTime;
-            Human.position += Vector3.Normalize(new Vector3(transform.right.x, 0f, transform.right.z)) * moveInput.x * walkSpeed * Time.deltaTime;
+            Vector3 movement = (Vector3.Normalize(new Vector3(transform.forward.x, 0f, transform.forward.z)) * moveInput.y + Vector3.Normalize(new Vector3(transform.right.x, 0f, transform.right.z)) * moveInput.x) * walkSpeed * Time.deltaTime;
+            Human.position += movement;
 
             if (Input.GetKey(KeyCode.Space) && Human.velocity.y == 0) Human.velocity += new Vector3(0, jVel, 0);
-
+            
         }
     }
 }
