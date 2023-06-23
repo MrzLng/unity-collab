@@ -11,7 +11,7 @@ public class EggPath : MonoBehaviour
     public Vector3 dir;
     public bool forhire;
     float percentage;
-    [SerializeField] float speed = 25f;
+    float speed = 25f;
     Dictionary<Vector3, List<Vector3>> possible =
         new Dictionary<Vector3, List<Vector3>>() {
             {new Vector3(-497, 1, 71), new List<Vector3>() { new Vector3(-497, 1, 74), new Vector3(494, 1, 71) }},
