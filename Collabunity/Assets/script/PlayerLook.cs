@@ -7,7 +7,7 @@ public class PlayerLook : MonoBehaviour
 {
     /* Minimum view distance [playerOnly] */
 
-    [SerializeField] float minViewDistance = 25f;
+    [SerializeField] float minViewDistance = 35f;
 
 
     /* Model of the player / human */
@@ -43,7 +43,7 @@ public class PlayerLook : MonoBehaviour
 
     /* X rotation of the player [playerOnly] */
 
-    float xRotation = 0f;
+    float xRotation = -10f;
 
 
     /* Jump Velocity [playerOnly] */
