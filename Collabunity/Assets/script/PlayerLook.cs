@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerLook : MonoBehaviour
 {
@@ -58,12 +59,14 @@ public class PlayerLook : MonoBehaviour
     private Quaternion originalrot = Quaternion.Euler(0f, 0f, 0f);
     private float timeCount = 0.0f;
     [SerializeField] public Image ui;
+    int animlayer;
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
         anim = GetComponentInParent<Animator>();
+        animlayer = anim.GetLayerIndex("Base Layer");
     }
 
     // Update is called once per frame
@@ -89,6 +92,10 @@ public class PlayerLook : MonoBehaviour
             return;
         }
         anim.SetBool("watch", watch);
+        if (anim.GetCurrentAnimatorStateInfo(animlayer).IsName("put down watch"))
+        {
+            return;
+        }
         Color oc2 = ui.GetComponent<Image>().material.color;
         ui.GetComponent<Image>().material.SetColor("_Color", new Color(oc2.r, oc2.g, oc2.b, 0.0f));
         if (transform.localRotation != originalrot)
