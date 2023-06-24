@@ -1,3 +1,5 @@
+/* Made and maintained by Jeff [DO NOT TOUCH] */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,18 +16,18 @@ public class EggPath : MonoBehaviour
 	bool forhire;
 	float percentage;
 	float speed = 25f;
-	Dictionary<Vector3, List<Vector3>> possible =
-		new Dictionary<Vector3, List<Vector3>>() {
-			{ new Vector3(-497f,    1f,	71f), new List<Vector3>(){ new Vector3(-497f, 1f, 74f) }},
-			{ new Vector3(-497f,    1f,	74f), new List<Vector3>(){ new Vector3(-186f, 1f, 74f) }},
-			{ new Vector3(-184.5f,  1f,	71f), new List<Vector3>(){ new Vector3(-497f, 1f, 71f), new Vector3(-186f, 1f, 74f) }},
-			{ new Vector3(-186f,    1f,	74f), new List<Vector3>(){ new Vector3(7f, 1f, 74f), new Vector3(-184.5f, 1f, 71f) }},
-			{ new Vector3( 7f,      1f,	71f), new List<Vector3>(){ new Vector3(-184.5f, 1f, 71f), new Vector3(7f, 1f, 74f) }},
-			{ new Vector3( 7f,		1f,	74f), new List<Vector3>(){ new Vector3(306.5f, 1f, 74f), new Vector3(7f, 1f, 71f) }},
-			{ new Vector3( 308f,	1f,	71f), new List<Vector3>(){ new Vector3(7f, 1f, 71f), new Vector3(306.5f, 1f, 74f) }},
-			{ new Vector3( 306.5f,	1f,	74f), new List<Vector3>(){ new Vector3(494f, 1f, 74f), new Vector3(308f, 1f, 71f) }},
-			{ new Vector3( 494f,	1f,	71f), new List<Vector3>(){ new Vector3(308f, 1f, 71f)}},
-			{ new Vector3( 494f,	1f,	74f), new List<Vector3>(){ new Vector3(494f, 1f, 71f)}},
+    Dictionary<Vector3, List<Tuple<Vector3, float>>> possible =
+		new Dictionary<Vector3, List<Tuple<Vector3, float>>>() {
+			{ new Vector3(-497f,    1f,	71f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(-497f, 1f, 74f), 1f) }},
+			{ new Vector3(-497f,    1f,	74f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(-186f, 1f, 74f), 1f) }},
+			{ new Vector3(-184.5f,  1f,	71f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(-497f, 1f, 71f), 0.95f), new Tuple<Vector3, float>(new Vector3(-186f, 1f, 74f), 1f) }},
+			{ new Vector3(-186f,    1f,	74f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(7f, 1f, 74f), 0.95f), new Tuple<Vector3, float>(new Vector3(-184.5f, 1f, 71f), 1f) }},
+			{ new Vector3( 7f,      1f,	71f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(-184.5f, 1f, 71f), 0.95f), new Tuple<Vector3, float>(new Vector3(7f, 1f, 74f), 1f) }},
+			{ new Vector3( 7f,		1f,	74f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(306.5f, 1f, 74f), 0.95f), new Tuple<Vector3, float>(new Vector3(7f, 1f, 71f), 1f) }},
+			{ new Vector3( 308f,	1f,	71f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(7f, 1f, 71f), 0.95f), new Tuple<Vector3, float>(new Vector3(306.5f, 1f, 74f), 1f) }},
+			{ new Vector3( 306.5f,	1f,	74f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(494f, 1f, 74f), 0.95f), new Tuple<Vector3, float>(new Vector3(308f, 1f, 71f), 1f) }},
+			{ new Vector3( 494f,	1f,	71f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(308f, 1f, 71f), 1f) }},
+			{ new Vector3( 494f,	1f,	74f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(494f, 1f, 71f), 1f) }},
 		};
 	// Start is called before the first frame update
 	void Start()
@@ -39,9 +41,16 @@ public class EggPath : MonoBehaviour
 		if (forhire)
 		{
 			forhire = false;
-			int goto_place = UnityEngine.Random.Range(0, possible[transform.position].Count);
-			from = transform.position;
-			to = possible[transform.position][goto_place];
+			int goto_place = UnityEngine.Random.Range(0, 100);
+			float prob = goto_place / 100f;
+			for (int i = 0; i < possible[transform.position].Count; i++) {
+				if (prob <= possible[transform.position][i].Item2)
+				{
+					to = possible[transform.position][i].Item1; break;
+				}
+			}
+
+            from = transform.position;
 			percentage = 0f;
 			distance = Vector3.Magnitude(to - from);
 			dir = Vector3.Normalize(to - from);
