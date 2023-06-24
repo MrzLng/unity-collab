@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class animControl : MonoBehaviour
 {
-    private Rigidbody rb;
     private Animator anim;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (rb.velocity.z != 0)
+        if (Input.GetKey("o"))
         {
             anim.SetBool("walk", true);
         } else
         {
             anim.SetBool("walk", false);
+        }
+
+        if (Input.GetKey("e")) 
+        {
+            anim.SetBool("watch", true);
+        } else if (Input.GetKey("r"))
+        {
+            anim.SetBool("watch", false);
         }
     }
 }
