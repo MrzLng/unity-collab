@@ -14,20 +14,6 @@ public class animControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKey("o"))
-        //{
-        //    anim.SetBool("walk", true);
-        //} else
-        //{
-        //    anim.SetBool("walk", false);
-        //}
-
-        if (Input.GetKey("e")) 
-        {
-            anim.SetBool("watch", true);
-        } else if (Input.GetKey("r"))
-        {
-            anim.SetBool("watch", false);
-        }
+        anim.SetBool("watch", gameObject.GetComponentInChildren<PlayerLook>().watch);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -52,17 +53,45 @@ public class PlayerLook : MonoBehaviour
     float jVel = 3f;
 
     private Animator anim;
+    public bool watch = false;
+    private Quaternion originalrot = Quaternion.Euler(0f, 0f, 0f);
+    private float timeCount = 0.0f;
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
-        anim = playerBody.GetComponent<Animator>();
+        anim = GetComponentInParent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("e"))
+        {
+            watch = !watch;
+        }
+        if (watch)
+        {
+            anim.SetBool("watch", watch);
+            if (transform.localRotation != Quaternion.Euler(25f, 0f, 0f))
+            {
+                transform.localRotation = Quaternion.Lerp(originalrot, Quaternion.Euler(25f, 0f, 0f), timeCount * 2);
+                timeCount = timeCount + Time.deltaTime;
+            }
+            else {
+                timeCount = 0f;
+            }
+            return;
+        }
+        anim.SetBool("watch", watch);
+        if (transform.localRotation != originalrot)
+        {
+            transform.localRotation = Quaternion.Lerp(Quaternion.Euler(25f, 0f, 0f), originalrot, timeCount * 2);
+            timeCount = timeCount + Time.deltaTime;
+            return;
+        }
+        timeCount = 0f;
 
         gameObject.GetComponent<Camera>().nearClipPlane = 0.2f;
 
@@ -88,7 +117,7 @@ public class PlayerLook : MonoBehaviour
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime * 10f;
             xRotation -= mouseY;
             xRotation = Mathf.Clamp(xRotation, -90f, minViewDistance);
-            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            originalrot = transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
             playerBody.Rotate(Vector3.up * mouseX);
             Vector3 movement = (Vector3.Normalize(new Vector3(transform.forward.x, 0f, transform.forward.z)) * moveInput.y + Vector3.Normalize(new Vector3(transform.right.x, 0f, transform.right.z)) * moveInput.x) * walkSpeed * Time.deltaTime;
             Human.position += movement;
@@ -98,5 +127,6 @@ public class PlayerLook : MonoBehaviour
             if (Input.GetKey(KeyCode.Space) && Human.velocity.y == 0) Human.velocity += new Vector3(0, jVel, 0);
             
         }
+        
     }
 }
