@@ -4,6 +4,7 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.UI;
 
 public class PlayerLook : MonoBehaviour
 {
@@ -56,6 +57,7 @@ public class PlayerLook : MonoBehaviour
     public bool watch = false;
     private Quaternion originalrot = Quaternion.Euler(0f, 0f, 0f);
     private float timeCount = 0.0f;
+    [SerializeField] public Image ui;
 
     void Start()
     {
@@ -81,10 +83,14 @@ public class PlayerLook : MonoBehaviour
             }
             else {
                 timeCount = 0f;
+                Color oc = ui.GetComponent<Image>().material.color;
+                ui.GetComponent<Image>().material.SetColor("_Color", new Color(oc.r, oc.g, oc.b, 1.0f));
             }
             return;
         }
         anim.SetBool("watch", watch);
+        Color oc2 = ui.GetComponent<Image>().material.color;
+        ui.GetComponent<Image>().material.SetColor("_Color", new Color(oc2.r, oc2.g, oc2.b, 0.0f));
         if (transform.localRotation != originalrot)
         {
             transform.localRotation = Quaternion.Lerp(Quaternion.Euler(25f, 0f, 0f), originalrot, timeCount * 2);

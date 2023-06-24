@@ -20682,6 +20682,7 @@ MonoBehaviour:
   difference: 1.6
   mouseSensitivity: 100
   watch: 0
+  ui: {fileID: 1624586486}
 --- !u!1818360608 &963194231
 PositionConstraint:
   m_ObjectHideFlags: 0
@@ -35625,7 +35626,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
