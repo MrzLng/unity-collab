@@ -7,7 +7,7 @@ public class PlayerLook : MonoBehaviour
 {
     /* Minimum view distance [playerOnly] */
 
-    [SerializeField] float minViewDistance = 35f;
+    float minViewDistance = 35f;
 
 
     /* Model of the player / human */
