@@ -14,13 +14,13 @@ public class animControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("o"))
-        {
-            anim.SetBool("walk", true);
-        } else
-        {
-            anim.SetBool("walk", false);
-        }
+        //if (Input.GetKey("o"))
+        //{
+        //    anim.SetBool("walk", true);
+        //} else
+        //{
+        //    anim.SetBool("walk", false);
+        //}
 
         if (Input.GetKey("e")) 
         {
