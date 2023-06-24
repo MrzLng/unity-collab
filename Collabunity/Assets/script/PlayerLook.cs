@@ -77,7 +77,6 @@ public class PlayerLook : MonoBehaviour
         {
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime * 10f;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime * 10f;
-
             xRotation -= mouseY;
             xRotation = Mathf.Clamp(xRotation, -90f, minViewDistance);
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
