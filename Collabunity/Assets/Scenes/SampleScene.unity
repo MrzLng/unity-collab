@@ -2080,6 +2080,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2147470902259350936, guid: 50f72b4455437b149837106b5667f325, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_Name
       value: schoolNPC (3)
@@ -5629,6 +5633,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2147470902259350936, guid: 50f72b4455437b149837106b5667f325, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_Name
@@ -14316,6 +14324,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2147470902259350936, guid: 50f72b4455437b149837106b5667f325, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_Name
       value: schoolNPC (4)
@@ -14432,6 +14444,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2147470902259350936, guid: 50f72b4455437b149837106b5667f325, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_Name
@@ -28777,6 +28793,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2147470902259350936, guid: 50f72b4455437b149837106b5667f325, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_Name
       value: schoolNPC (8)
@@ -32210,7 +32230,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.15
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -41548,6 +41568,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2147470902259350936, guid: 50f72b4455437b149837106b5667f325, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_Name
       value: schoolNPC (7)
@@ -42220,6 +42244,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2147470902259350936, guid: 50f72b4455437b149837106b5667f325, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_Name
@@ -52674,6 +52702,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2147470902259350936, guid: 50f72b4455437b149837106b5667f325, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_Name
       value: schoolNPC (9)
@@ -54528,6 +54560,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2147470902259350936, guid: 50f72b4455437b149837106b5667f325, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2147470902259350936, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -66402,6 +66438,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2147470902259350936, guid: 50f72b4455437b149837106b5667f325, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_Name
       value: npcman
@@ -74517,6 +74557,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2147470902259350936, guid: 50f72b4455437b149837106b5667f325, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_Name
       value: schoolNPC (5)
@@ -75320,6 +75364,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2147470902259350936, guid: 50f72b4455437b149837106b5667f325, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2147470902259350936, guid: 50f72b4455437b149837106b5667f325, type: 3}
       propertyPath: m_Materials.Array.data[1]
