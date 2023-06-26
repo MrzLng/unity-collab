@@ -7,7 +7,7 @@ public class npcwalk : MonoBehaviour
 {
 
     bool walking = false;
-    Vector3 dir;
+    Vector3 dir = Vector3.zero;
     Vector3 from;
     Vector3 to;
     Animator animator;
@@ -30,7 +30,10 @@ public class npcwalk : MonoBehaviour
         if (!walking) {
             Vector2 temp = Random.insideUnitCircle * 5f;
             Vector3 tempdir = new Vector3(temp.x, 0f, temp.y);
-            if (Physics.Raycast(transform.position, tempdir, 5f)) return;
+            if (Physics.Raycast(transform.position, tempdir, 5f)
+                //|| Vector3.Dot(tempdir.normalized, (dir == Vector3.zero ? tempdir : dir).normalized) < 0
+                // Uncomment above to force npc to walk in < 90 deg
+                ) return;
             walking = true;
             dir = tempdir;
             transform.rotation = Quaternion.FromToRotation(Vector3.forward, dir);
