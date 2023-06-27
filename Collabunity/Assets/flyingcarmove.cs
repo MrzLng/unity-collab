@@ -7,7 +7,7 @@ public class flyingcarmove : MonoBehaviour
 {
     public Vector3 from;
     public Vector3 to;
-    private float speed = 35f;
+    private float speed = 55f;
     private float percentage = 0f;
     public float distance;
     public bool start = false;
