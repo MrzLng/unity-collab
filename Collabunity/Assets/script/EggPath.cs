@@ -66,6 +66,7 @@ public class EggPath : MonoBehaviour
 		}
 		else {
 				transform.position = Vector3.Lerp(from, to, percentage);
+			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Vector3.Cross(dir, Vector3.up)), percentage * 10);
 				percentage += speed / distance * Time.deltaTime;
 			if (transform.position == to) forhire = true;
 		}
