@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class npcpod : MonoBehaviour
@@ -12,6 +13,9 @@ public class npcpod : MonoBehaviour
     private bool movingdown = false;//Mori
     private bool play = false;
     private float speed = 2.0f;
+    private float percentage = 0f;
+    private float percentage2 = 0f;
+    private Vector3 vel = Vector3.zero;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,22 +39,37 @@ public class npcpod : MonoBehaviour
     {
         if (movingup)
         {
-            door.position = door.position + new Vector3(0, speed * Time.fixedDeltaTime, 0);
-            if (door.localPosition.y > 1.6)
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 0.434f, transform.position.z), percentage);
+            percentage += speed * 0.225f * Time.fixedDeltaTime;
+            if (transform.position.y == 0.434f)
             {
-                movingup = false;
-                door.localPosition = new Vector3(0, 1.5f, 0);
-                play = true;
+                door.position = door.position + new Vector3(0, speed * Time.fixedDeltaTime, 0);
+                if (door.localPosition.y > 1.6)
+                {
+                    movingup = false;
+                    percentage = 0f;
+                    door.localPosition = new Vector3(0, 1.5f, 0);
+                    play = true;
+
+                }
 
             }
         }
         else if (movingdown)
         {
-            door.position = door.position - new Vector3(0, speed * Time.fixedDeltaTime, 0);
-            if (door.localPosition.y < 0)
+            door.localPosition = Vector3.Lerp(door.localPosition, Vector3.zero, percentage);
+            percentage += speed * Time.fixedDeltaTime;
+            if (door.localPosition.y == 0f)
             {
-                movingdown = false;
-                door.localPosition = new Vector3(0, 0, 0);
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 1f, transform.position.z), percentage2);
+                percentage2 += speed * 0.225f * Time.deltaTime;
+                if (transform.position.y == 1f)
+                {
+                    movingdown = false;
+                    percentage = 0f;
+                    percentage2 = 0f;
+
+                }
             }
         }
         if (play)
