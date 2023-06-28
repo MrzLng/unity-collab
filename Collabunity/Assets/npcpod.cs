@@ -128,6 +128,8 @@ public class npcpod : MonoBehaviour
         {
             movingdown = true;
             npc.SetParent(null, true);
+            npc.gameObject.GetComponent<Rigidbody>().useGravity = true;
+            npc.gameObject.GetComponent<rickywalk>().enabled = true;
         }
         }
 }
