@@ -116,7 +116,6 @@ public class npcpod : MonoBehaviour
                     movingdown = false;
                     percentage = 0f;
                     percentage2 = 0f;
-
                 }
             }
         }
@@ -125,8 +124,12 @@ public class npcpod : MonoBehaviour
             anim.SetBool("npcGetOut", true);
             play = false;
         }
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("idle")) movingdown = true;
-    }
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+        {
+            movingdown = true;
+            npc.SetParent(null, true);
+        }
+        }
 }
 
 
