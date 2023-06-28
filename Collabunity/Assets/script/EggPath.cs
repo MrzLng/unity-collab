@@ -21,12 +21,12 @@ public class EggPath : MonoBehaviour
 			{ new Vector3(-497f,    1f,	71f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(-497f, 1f, 74f), 1f) }},
 			{ new Vector3(-497f,    1f,	74f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(-186f, 1f, 74f), 1f) }},
 			{ new Vector3(-184.5f,  1f,	71f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(-497f, 1f, 71f), 0.95f), new Tuple<Vector3, float>(new Vector3(-186f, 1f, 74f), 1f) }},
-			{ new Vector3(-186f,    1f,	74f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(7f, 1f, 74f), 0.95f), new Tuple<Vector3, float>(new Vector3(-184.5f, 1f, 71f), 1f) }},
-			{ new Vector3( 7f,      1f,	71f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(-184.5f, 1f, 71f), 0.95f), new Tuple<Vector3, float>(new Vector3(7f, 1f, 74f), 1f) }},
-			{ new Vector3( 7f,		1f,	74f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(306.5f, 1f, 74f), 0.95f), new Tuple<Vector3, float>(new Vector3(7f, 1f, 71f), 1f) }},
-			{ new Vector3( 308f,	1f,	71f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(7f, 1f, 71f), 0.95f), new Tuple<Vector3, float>(new Vector3(306.5f, 1f, 74f), 1f) }},
-			{ new Vector3( 306.5f,	1f,	74f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(494f, 1f, 74f), 0.95f), new Tuple<Vector3, float>(new Vector3(308f, 1f, 71f), 1f) }},
-			{ new Vector3( 494f,	1f,	71f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(308f, 1f, 71f), 1f) }},
+			{ new Vector3(-186f,    1f,	74f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(-31f, 1f, 74f), 0.95f), new Tuple<Vector3, float>(new Vector3(-184.5f, 1f, 71f), 1f) }},
+			{ new Vector3( -31f,    1f,	71f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(-184.5f, 1f, 71f), 0.95f), new Tuple<Vector3, float>(new Vector3(-31f, 1f, 74f), 1f) }},
+			{ new Vector3( -31f,	1f,	74f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(442f, 1f, 74f), 0.95f), new Tuple<Vector3, float>(new Vector3(-31f, 1f, 71f), 1f) }},
+			{ new Vector3( 435f,	1f,	71f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(-31f, 1f, 71f), 0.95f), new Tuple<Vector3, float>(new Vector3(442f, 1f, 74f), 1f) }},
+			{ new Vector3( 442f,	1f,	74f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(494f, 1f, 74f), 0.95f), new Tuple<Vector3, float>(new Vector3(435f, 1f, 71f), 1f) }},
+			{ new Vector3( 494f,	1f,	71f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(435f, 1f, 71f), 1f) }},
 			{ new Vector3( 494f,	1f,	74f), new List<Tuple<Vector3, float>>(){ new Tuple<Vector3, float>(new Vector3(494f, 1f, 71f), 1f) }},
 		};
 	// Start is called before the first frame update
@@ -58,8 +58,9 @@ public class EggPath : MonoBehaviour
 			GameObject[] eggs = GameObject.FindGameObjectsWithTag("Egg");
 			for (int i = 0; i < eggs.Length; i++)
 			{
-				if (eggs[i].name != gameObject.name && eggs[i].GetComponent<EggPath>().to == to && (Mathf.Abs(eggs[i].GetComponent<EggPath>().arrivaltime - arrivaltime) <= 0.05)) {
-					forhire = true; return;
+                if ((eggs[i].name != gameObject.name && eggs[i].GetComponent<EggPath>()?.to == to && (Mathf.Abs(eggs[i].GetComponent<EggPath>().arrivaltime - arrivaltime) <= 0.05)) ||
+                    (eggs[i].name != gameObject.name && eggs[i].GetComponent<npcpod>()?.to == to && (Mathf.Abs(eggs[i].GetComponent<npcpod>().arrivaltime - arrivaltime) <= 0.05))) {
+                    forhire = true; return;
 				}
 			}
 			Debug.Log("Eggpod " + gameObject.name + " is now moving towards " + to + ". This trip is " + distance + " meters. Estimated time of travel = " + distance / speed + " seconds.");

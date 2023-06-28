@@ -16,6 +16,18 @@ public class npcpod : MonoBehaviour
     private float percentage = 0f;
     private float percentage2 = 0f;
     private Vector3 vel = Vector3.zero;
+
+    public Vector3 from;
+    public Vector3 to;
+    public float distance;
+    public Vector3 dir;
+    private int index = 0;
+    private bool forhire = true;
+    private bool setted = false;
+    public bool donedrive = false;
+    public float arrivaltime;
+    float podspeed = 25f;
+    private Vector3[] route = new Vector3[] { new Vector3(442f, 1f, 74f), new Vector3(435f, 1f, 71f), new Vector3(-31f, 1f, 71f), new Vector3(-40f, 1f, 68.5f) };
     // Start is called before the first frame update
     void Start()
     {
@@ -27,11 +39,47 @@ public class npcpod : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.J))
+        if (donedrive) return;
+        if (forhire)
         {
-            movingup = true;//Mori
-            //npc.localPosition = -npc.transform.forward.normalized;
-            //anim.SetBool("npcGetOut", true);
+            if (!setted)
+            {
+                to = route[index];
+                index++;
+                from = transform.position;
+                percentage = 0f;
+                distance = Vector3.Magnitude(to - from);
+                dir = Vector3.Normalize(to - from);
+                arrivaltime = Time.time + distance / podspeed;
+                setted = true;
+            }
+            GameObject[] eggs = GameObject.FindGameObjectsWithTag("Egg");
+            for (int i = 0; i < eggs.Length; i++)
+            {
+                if ((eggs[i].name != gameObject.name && eggs[i].GetComponent<EggPath>()?.to == to && (Mathf.Abs(eggs[i].GetComponent<EggPath>().arrivaltime - arrivaltime) <= 0.05)) ||
+                    (eggs[i].name != gameObject.name && eggs[i].GetComponent<npcpod>()?.to == to && (Mathf.Abs(eggs[i].GetComponent<npcpod>().arrivaltime - arrivaltime) <= 0.05)))
+                {
+                    forhire = true; return;
+                }
+            }
+            forhire = false;
+            Debug.Log("Eggpod " + gameObject.name + " is now moving towards " + to + ". This trip is " + distance + " meters. Estimated time of travel = " + distance / speed + " seconds.");
+        }
+        else
+        {
+            transform.position = Vector3.Lerp(from, to, percentage);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Vector3.Cross(Vector3.up, dir)), percentage * 10);
+            percentage += podspeed / distance * Time.deltaTime;
+            if (transform.position == to) { forhire = true; setted = false; }
+        }
+        if (!(index == 4 && forhire == true)) return;
+        else
+        {
+            Debug.Log("NPCPOD FINISH WHY GO BACK");
+            donedrive = true; // suppress
+            percentage = 0f; //done
+            movingup = true;
+            index = 0; // suppress
         }
     }
 
