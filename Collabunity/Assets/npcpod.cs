@@ -57,8 +57,8 @@ public class npcpod : MonoBehaviour
         {
             anim.SetBool("npcGetOut", true);
             play = false;
-            movingdown = true;
         }
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("idle")) movingdown = true;
     }
 }
 
