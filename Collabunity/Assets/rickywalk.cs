@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class rickywalk : MonoBehaviour
 {
-    private Vector3[] route = new Vector3[] { new Vector3(0f, 0f, -15f), new Vector3(26.65f, 0f, -17.19f) };
+    private Vector3[] route = new Vector3[] { new Vector3(0f, 0f, -15f),
+        new Vector3(26.65f, 0f, -17.19f), new Vector3(8.13f, 0f, -116.2f),
+        new Vector3(-18.12f, 0f, 0f), new Vector3(0f, 0f, 1.15f) };
     private int index = 0;
     bool done = false;
     bool walking = false;
@@ -34,7 +36,7 @@ public class rickywalk : MonoBehaviour
             walking = true;
             dir = route[index];
             index++;
-            transform.rotation = Quaternion.FromToRotation(Vector3.forward, dir);
+            transform.rotation = Quaternion.LookRotation(dir);
             from = transform.position;
             to = transform.position + dir;
             percentage = 0f;
@@ -43,8 +45,8 @@ public class rickywalk : MonoBehaviour
         transform.position = Vector3.Lerp(from, to, percentage);
         percentage += speed / dir.magnitude * Time.deltaTime;
         if (transform.position == to) walking = false;
-        if (!(index == 2 && walking == false)) return;
+        if (!(index == 5 && walking == false)) return;
         done = true;
-        Debug.Log("test");
+        Destroy(gameObject);
     }
 }

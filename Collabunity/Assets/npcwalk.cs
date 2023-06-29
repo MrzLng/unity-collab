@@ -36,7 +36,7 @@ public class npcwalk : MonoBehaviour
                 ) return;
             walking = true;
             dir = tempdir;
-            transform.rotation = Quaternion.FromToRotation(Vector3.forward, dir);
+            transform.rotation = Quaternion.LookRotation(dir);
             from = transform.position;
             to = transform.position + dir;
             percentage = 0f;

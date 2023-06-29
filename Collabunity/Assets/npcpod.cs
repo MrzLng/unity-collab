@@ -27,7 +27,8 @@ public class npcpod : MonoBehaviour
     public bool donedrive = false;
     public float arrivaltime;
     float podspeed = 25f;
-    private Vector3[] route = new Vector3[] { new Vector3(442f, 1f, 74f), new Vector3(435f, 1f, 71f), new Vector3(-31f, 1f, 71f), new Vector3(-40f, 1f, 68.5f) };
+    private bool disconnect = false;
+    private Vector3[] route = new Vector3[] { new Vector3(442f, 1f, 74f), new Vector3(435f, 1f, 71f), new Vector3(-31f, 1f, 71f), new Vector3(-40f, 1f, 68.5f), new Vector3(-45f, 1f, 71f), new Vector3(-184.5f, 1f, 71f), new Vector3(-550f, 1f, -293f) };
     // Start is called before the first frame update
     void Start()
     {
@@ -72,14 +73,13 @@ public class npcpod : MonoBehaviour
             percentage += podspeed / distance * Time.deltaTime;
             if (transform.position == to) { forhire = true; setted = false; }
         }
-        if (!(index == 4 && forhire == true)) return;
+        if (!((index == 4 || index == 7) && forhire == true)) return;
         else
         {
-            Debug.Log("NPCPOD FINISH WHY GO BACK");
             donedrive = true; // suppress
             percentage = 0f; //done
-            movingup = true;
-            index = 0; // suppress
+            if (index == 4) movingup = true;
+            if (index == 7) Destroy(gameObject);
         }
     }
 
@@ -115,21 +115,22 @@ public class npcpod : MonoBehaviour
                 {
                     movingdown = false;
                     percentage = 0f;
-                    percentage2 = 0f;
+                    percentage2 = 0f; donedrive = false;
                 }
             }
         }
-        if (play)
+        if (play && !disconnect)
         {
             anim.SetBool("npcGetOut", true);
             play = false;
         }
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+        if (!disconnect && anim.GetCurrentAnimatorStateInfo(0).IsName("idle"))
         {
             movingdown = true;
             npc.SetParent(null, true);
-            npc.gameObject.GetComponent<Rigidbody>().useGravity = true;
+            npc.position = new Vector3(npc.position.x, 0.4f, npc.position.z);
             npc.gameObject.GetComponent<rickywalk>().enabled = true;
+            disconnect = true;
         }
         }
 }
