@@ -11,7 +11,7 @@ public class PlayerLook : MonoBehaviour
 {
     /* Minimum view distance [playerOnly] */
 
-    float minViewDistance = 35f;
+    float minViewDistance = 30f;
 
 
     /* Model of the player / human */
@@ -31,7 +31,7 @@ public class PlayerLook : MonoBehaviour
 
     /* If true, the camera moves in a freecam mode [playerOnly] */
 
-    [SerializeField] bool freeCam = false;
+    private bool freeCam = true;
     [SerializeField] float difference;
 
 
@@ -79,7 +79,7 @@ public class PlayerLook : MonoBehaviour
         if (watch)
         {
             anim.SetBool("watch", watch);
-            if (transform.localRotation != Quaternion.Euler(25f, 0f, 0f))
+            if (transform.localRotation != Quaternion.Euler(25f, 0f, 0f) && !freeCam)
             {
                 transform.localRotation = Quaternion.Lerp(originalrot, Quaternion.Euler(25f, 0f, 0f), timeCount * 2);
                 timeCount = timeCount + Time.deltaTime;
@@ -96,15 +96,18 @@ public class PlayerLook : MonoBehaviour
         {
             return;
         }
-        Color oc2 = ui.GetComponent<Image>().material.color;
-        ui.GetComponent<Image>().material.SetColor("_Color", new Color(oc2.r, oc2.g, oc2.b, 0.0f));
-        if (transform.localRotation != originalrot)
+        if (!freeCam)
         {
-            transform.localRotation = Quaternion.Lerp(Quaternion.Euler(25f, 0f, 0f), originalrot, timeCount * 2);
-            timeCount = timeCount + Time.deltaTime;
-            return;
+            Color oc2 = ui.GetComponent<Image>().material.color;
+            ui.GetComponent<Image>().material.SetColor("_Color", new Color(oc2.r, oc2.g, oc2.b, 0.0f));
+            if (transform.localRotation != originalrot)
+            {
+                transform.localRotation = Quaternion.Lerp(Quaternion.Euler(25f, 0f, 0f), originalrot, timeCount * 2);
+                timeCount = timeCount + Time.deltaTime;
+                return;
+            }
+            timeCount = 0f;
         }
-        timeCount = 0f;
 
         gameObject.GetComponent<Camera>().nearClipPlane = 0.2f;
 

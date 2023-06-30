@@ -7,23 +7,19 @@ public class videocamera : MonoBehaviour
     GameObject npc;
     private bool zooming = false;
     private float percentage = 0f;
-    private Vector3 currentheight = new Vector3(-5f, 1f, -0.5f);
+    private Vector3 currentheight = new Vector3(-15.86761f, 169.5461f, -38.91922f);
     // Start is called before the first frame update
     void Start()
     {
-        npc = GameObject.Find("/SPECIALNPCPOD/NPC");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (npc.transform.parent == null)
-        {
-            zooming = true;
+        if (Input.GetKey(KeyCode.Q)) zooming = true;
+        if (zooming && percentage < 360) { transform.rotation = Quaternion.Euler(5f, percentage, 0f); percentage += 20 * Time.deltaTime; }
+        if (percentage >= 360) transform.rotation = Quaternion.Euler(percentage, percentage, 0f);
+        transform.position = currentheight;
+        //transform.rotation = Quaternion.Euler(-75f, 0f, 0f);
         }
-        if (zooming) { currentheight = Vector3.Lerp(currentheight, new Vector3(0f, 3f, -5f), percentage); percentage += 0.02f * Time.deltaTime; }
-        transform.position = npc.transform.position + currentheight;
-        Debug.Log("AAAAAAAAAAAAAAA "+transform.position);
-        transform.rotation = Quaternion.LookRotation(npc.transform.position - transform.position);
-    }
 }

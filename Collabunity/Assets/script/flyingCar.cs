@@ -18,7 +18,7 @@ public class flyingCar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int ret = Random.Range(0, 1000);
+        int ret = Random.Range(0, 500);
         if (ret < 3)
         {
             Vector3 dist = Random.insideUnitSphere;
