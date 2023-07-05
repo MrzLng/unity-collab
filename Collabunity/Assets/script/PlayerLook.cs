@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UI;
 
-public class PlayerLook : MonoBehaviour
+public class PlayerLook : NetworkBehaviour
 {
     /* Minimum view distance [playerOnly] */
 
@@ -68,6 +69,11 @@ public class PlayerLook : MonoBehaviour
         animlayer = anim.GetLayerIndex("Base Layer");
     }
 
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner) { Destroy(gameObject); }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -97,8 +103,8 @@ public class PlayerLook : MonoBehaviour
         }
         if (!freeCam)
         {
-            Color oc2 = ui.GetComponent<Image>().material.color;
-            ui.GetComponent<Image>().material.SetColor("_Color", new Color(oc2.r, oc2.g, oc2.b, 0.0f));
+            //Color oc2 = ui.GetComponent<Image>().material.color;
+            //ui.GetComponent<Image>().material.SetColor("_Color", new Color(oc2.r, oc2.g, oc2.b, 0.0f));
             if (transform.localRotation != originalrot)
             {
                 transform.localRotation = Quaternion.Lerp(Quaternion.Euler(25f, 0f, 0f), originalrot, timeCount * 2);
