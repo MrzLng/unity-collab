@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerLook : MonoBehaviour
 {
@@ -31,7 +30,7 @@ public class PlayerLook : MonoBehaviour
 
     /* If true, the camera moves in a freecam mode [playerOnly] */
 
-    private bool freeCam = true;
+    private bool freeCam = false;
     [SerializeField] float difference;
 
 
